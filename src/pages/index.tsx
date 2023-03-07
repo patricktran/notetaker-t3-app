@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import { useState } from "react";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
-import { Header } from "~/components/Header";
+import { Header, SignInButton } from "~/components/Header";
 import { NoteEditor } from "~/components/NoteEditor";
 import { NoteCard } from "~/components/NoteCard";
 import { api, type RouterOutputs } from "~/utils/api";
@@ -70,6 +70,13 @@ const Content: React.FC = () => {
       await refetchNotes();
     },
   });
+
+  if (sessionData?.user === undefined)
+    return (
+      <div className="mt-10  text-center">
+        <SignInButton /> to add Topics and Notes!
+      </div>
+    );
 
   return (
     <div className="mx-5 mt-5 grid grid-cols-4 gap-2">

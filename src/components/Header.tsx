@@ -13,6 +13,7 @@ export const Header = () => {
         <div className="dropdown-end dropdown">
           {sessionData?.user ? (
             <label
+              title="Sign out"
               tabIndex={0}
               className="btn-ghost btn-circle avatar btn"
               onClick={() => void signOut()}
@@ -26,15 +27,16 @@ export const Header = () => {
               </div>
             </label>
           ) : (
-            <button
-              className="btn-ghost rounded-btn btn"
-              onClick={() => void signIn()}
-            >
-              Sign in
-            </button>
+            <SignInButton />
           )}
         </div>
       </div>
     </div>
   );
 };
+
+export const SignInButton = () => (
+  <button className="btn-ghost rounded-btn btn" onClick={() => void signIn()}>
+    Sign in
+  </button>
+);
